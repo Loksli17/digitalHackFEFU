@@ -16,19 +16,13 @@
                 stuff: ""
             }
         },
-        mounted() {
+        created() {
             this.fetchData();
         },
         methods: {
             async fetchData() {
-                const config = {
-                    headers: {
-                        "Access-Control-Allow-Origin": "*"
-                    }
-                }
-
                 try {
-                    const res = await axios.get("http://localhost:3000/api/index", config);
+                    const res = await axios.get("http://localhost:3000/api/index");
                     this.stuff = await res.data;
                 } catch (error) {
                     console.error(error);
