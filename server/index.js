@@ -1,24 +1,21 @@
 const
-    express    = require('express'),
-    bodyParser = require('body-parser'),
-    cors       = require('cors'),
-    morgan     = require('morgan');
+    express = require('express'),
+    cors    = require('cors'),
+    morgan  = require('morgan');
 
 const 
     config = require('../config');
 
-    console.log(config);
-
-
 const 
     app  = express(),
-    port = config.app.port || process.env;
+    port = config.app.port || process.env.port;
 
 app.use('/api/index', require('./routers/index.js'));
 
 app.use(morgan('combined'));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 
-app.listen(port, () => console.log('server has been started in port 3000'));
+app.listen(port, () => console.log(`server has been started in port ${3000}`));
