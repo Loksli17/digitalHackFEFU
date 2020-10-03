@@ -112,6 +112,8 @@ exports.indexAjax = async (req, res) => {
 }
 
 exports.createOrder = async (req, res) =>{
+	const POST = req.body;
+	
 	let today = new Date(),
 		dd = today.getDate(),
 		mm = today.getMonth()+1, 
@@ -127,6 +129,5 @@ exports.createOrder = async (req, res) =>{
 
 	today = mm + '/' + dd + '/' + yyyy;
 	
-    res.send('Zzzzzzzzzzz..')	
-	
+    res.send(POST);	
 }	
