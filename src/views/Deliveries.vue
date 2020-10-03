@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul>
+        <ul class="delivery-wrap">
             <Delivery
                 v-for="delivery in userDeliveries"
                 :key="delivery.id"
@@ -24,3 +24,10 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .delivery-wrap {
+        display: grid;
+        grid-gap: 20px;
+    }
+</style>

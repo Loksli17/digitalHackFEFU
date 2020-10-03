@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <li class="delivery">
         <div class="order-user">
             <h4>Студент</h4>
             <div>
@@ -70,7 +70,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .order {
+    .delivery {
         display: grid;
         grid-gap: 10px;
         padding: 20px;
