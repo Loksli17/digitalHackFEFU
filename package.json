@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start-server": "node server/index"
+    "node-server": "nodemon server/index"
   },
   "repository": {
     "type": "git",

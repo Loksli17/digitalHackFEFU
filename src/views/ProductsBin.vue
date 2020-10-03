@@ -11,6 +11,7 @@
     </div>
 </template>
 
+
 <script>
     import Product from "../components/ProductsBin/product.vue";
     import axios from "axios";
