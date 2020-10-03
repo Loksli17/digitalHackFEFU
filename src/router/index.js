@@ -21,9 +21,19 @@ const routes = [
       component: () => import('../views/Raiting.vue')
   },
   {
+      path: '/products',
+      name: 'Товары',
+      component: () => import('../views/Products.vue')
+  },
+  {
       path: '/products-bin',
       name: 'Корзина',
       component: () => import('../views/ProductsBin.vue')
+  },
+  {
+      path: '*',
+      name: '404',
+      component: () => import('../views/404.vue')
   }
 ]
 

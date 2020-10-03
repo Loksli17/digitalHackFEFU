@@ -19,13 +19,22 @@
                 В корзину
             </div>
         </div>
+        <div class="third-bin">
+            <button @click="AddToCart">Добавить в корзину</button>
+        </div>
     </li>
 </template>
 
 <script>
     export default {
         name: "Product",
-        props: ["product"]
+        props: ["product"],
+        methods: {
+            AddToCart() {
+                // this.$emit("add-to-cart", this.product);
+                this.$store.commit("addToCart", { product: this.product });
+            }
+        }
     }
 </script>
 

@@ -8,24 +8,28 @@ const
 exports.actionIndex = async (req, res) => {
     let products = await Product.find('all', {
 		select: [
-		
+		'shop_has_product.id as id',
 		'product.price',
 		'product.value',
 		'product.desc',
 		'product.img',
 		'product.name as name',
-		'shop.name as sname'
+		'shop.name as sname',
+		
 		],
 		
 		join: [
-            ['inner', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
-            ['inner', 'shop', 'shop.id = shop_has_product.idShop'],
+            ['right', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
+            ['left', 'shop', 'shop.id = shop_has_product.idShop'],
         ],		
 	});
 	
-	res.send(products);
+    res.send(products);
+    
+    console.log(products);
 	return;
 }	
+
 
 exports.actionView = async (req, res) => {
 	let 

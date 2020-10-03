@@ -3,46 +3,31 @@
         <!-- <h3>Корзина</h3> -->
         <img id="banner" src="../assets/img/products/banner.jpg" alt="banner">
         <ul>
-            <Product
-                v-for="product in products"
+            <BinProduct
+                v-for="product in userProducts"
                 :key="product.id"
                 :product="product"
             />
         </ul>
+        <button @click="submitOrder">ПАДТВЕРДЕТЬ ЗОКАЗ</button>
     </div>
 </template>users
 
-
 <script>
-    import Product from "../components/ProductsBin/product.vue";
-    import axios from "axios";
+    import BinProduct from "../components/ProductsBin/binPorduct.vue";
 
     export default {
         components: {
-            Product
+            BinProduct
         },
-        data() {
-            return {
-                products: []
+        computed: {
+            userProducts() {
+                return this.$store.getters.getUserProductsBin;
             }
         },
-        created() {
-            this.fetchProducts();
-        },
         methods: {
-            async fetchProducts() {
-                try {
-                    const res = await axios.get("http://localhost:3000/api/product");
-                    this.products = res.data;
-                } catch (err) {
-                    console.error(err);
-                    this.products = [
-                        {
-                            id: 0,
-                            name: "error"
-                        }
-                    ]
-                }
+            submitOrder() {
+                console.log(JSON.stringify(this.userProducts));
             }
         }
     }

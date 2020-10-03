@@ -32,7 +32,6 @@
                 try {
                     const res  = await axios.get('http://localhost:3000/api/raiting');
                     this.users = res.data;
-                    console.log(this.users);
                 } catch (err) {
                     console.log(err);
                     this.users = [
