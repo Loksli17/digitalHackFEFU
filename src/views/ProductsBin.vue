@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <h3>Корзина</h3>
+    <div class="wrapper">
+        <!-- <h3>Корзина</h3> -->
+        <img id="banner" src="../assets/img/products/banner.jpg" alt="banner">
         <ul>
             <Product
                 v-for="product in products"
@@ -9,7 +10,7 @@
             />
         </ul>
     </div>
-</template>
+</template>users
 
 
 <script>
@@ -48,16 +49,24 @@
 </script>
 
 <style lang="scss" scoped>
+    .wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        padding: 15px;
+    }
+
     ul {
         display: grid;
         list-style: none;
         padding: 0;
-        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-between;
+        min-width: 100%;
+        grid-gap: 7px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
 
-        li {
-            background: #ccc;
-            padding: 20px;
-            margin: 5px;
-        }
+    #banner {
+        width: 100%;
     }
 </style>
