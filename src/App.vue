@@ -42,9 +42,12 @@
 </script>
 
 <style lang="scss">
+    @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100;400&display=swap");
+
     * {
         margin: 0px;
         padding: 0px;
+        font-family: "Exo 2", sans-serif;
     }
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
