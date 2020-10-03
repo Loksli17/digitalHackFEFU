@@ -65,7 +65,7 @@
         padding: 20px;
         margin: 5px;
         box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.2);
-        font-family: 'Exo 2', sans-serif;
+        font-family: "Exo 2", sans-serif;
 
         .image {
             background: no-repeat center;
@@ -92,7 +92,7 @@
             }
 
             .third-bin {
-                background-color: #4476CC;
+                background-color: #4476cc;
 
                 button {
                     background: none;

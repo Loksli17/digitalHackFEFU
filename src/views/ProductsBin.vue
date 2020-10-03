@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <!-- <h3>Корзина</h3> -->
-        <img id="banner" src="../assets/img/products/banner.jpg" alt="banner">
+        <img id="banner" src="../assets/img/products/banner.jpg" alt="banner" />
         <ul>
             <BinProduct
                 v-for="product in userProducts"
@@ -18,6 +18,7 @@
 
 <script>
     import BinProduct from "../components/ProductsBin/binPorduct.vue";
+    import axios from "axios";
 
     export default {
         components: {
@@ -29,8 +30,20 @@
             }
         },
         methods: {
-            submitOrder() {
-                console.log(JSON.stringify(this.userProducts));
+            async submitOrder() {
+                // console.log(JSON.stringify(this.userProducts));
+                // const dataToSend = JSON.stringify(this.userProducts);
+                const dataToSend = {
+                    чо: "отправлять"
+                };
+
+                try {
+                    const res = axios.post(`http://localhost:3000/api/order/`, dataToSend);
+                    console.log(res.data);
+                    return true;
+                } catch (err) {
+                    console.error(err);
+                }
             }
         }
     }
