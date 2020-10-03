@@ -1,11 +1,11 @@
 <template>
     <li>
-        <div class="image" :style="'background-image: url(`assets\img\`' + products.img + ')'")>
+        <!-- <div class="image" :style="'background-image: url(`assets\img\`' + products.img + ')'")> -->
 
-        </div>
+        <!-- </div> -->
         <div class="first-row">
             <h3>{{ product.name }}</h3>
-            <h3>{{product.}}</h3>
+            <!-- <h3>{{product.}}</h3> -->
         </div>
         <div class="second-row">
             <h4>{{product.desc}}</h4>
