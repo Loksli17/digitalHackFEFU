@@ -1,7 +1,10 @@
 <template>
     <li>
         <div class="image"></div>
-        <div class="first-row" :style="imgBackground">
+        <div
+            class="first-row"
+            :style="'background-image: url(`assets/img/`' + product.img + ')'"
+        >
             <h3>{{ product.name }}</h3>
             <!-- <h3>{{product.}}</h3> -->
         </div>
@@ -15,12 +18,7 @@
 <script>
     export default {
         name: "Product",
-        props: ["product"],
-        computed: {
-            imgBackground() {
-                return "'background-image: url(`assets/img/`' + products.img + ')')"
-            }
-        }
+        props: ["product"]
     }
 </script>
 
