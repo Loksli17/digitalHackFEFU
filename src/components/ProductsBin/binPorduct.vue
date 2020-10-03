@@ -1,19 +1,18 @@
 <template>
     <li>
-        <div class="image"></div>
-        <div
-            class="first-row"
+        <div class="image"
             :style="{
                 'background-image':
                     'url(' +
                     require('../../assets/img/products/' + product.img) +
                     ')',
-            }"
-        >
+            }">
+        </div>
+        <div>
             <h3>{{ product.name }}</h3>
         </div>
         <div class="second-row">
-            <h4>{{ product.desc }}</h4>
+            <!-- <h4>{{ product.desc }}</h4> -->
             <h4>{{ product.price }}₽</h4>
         </div>
         <div class="third-row">
@@ -61,12 +60,28 @@
 <style lang="scss" scoped>
     li {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: row nowrap;
+        padding: 10px 0px;
+        width: 100%;
+
 
         div {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
+            align-items: center;
+            border: 1px black solid;
+            padding: 0px 15px;
+            font-size: 12px;
+
+            &:nth-child(2) {
+                width: 200px;
+            }
+
+            &:nth-child(3) {
+                width: 50px;
+                text-align: center;
+            }
 
             input {
                 height: 20px;
@@ -75,6 +90,7 @@
     }
 
     .image {
-        min-width: 100%;
+        min-width: 100px;
+        background-position: no-repeat center 100% 100%;
     }
 </style>

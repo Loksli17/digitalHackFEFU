@@ -50,6 +50,7 @@
 </script>
 
 <style lang="scss" scoped>
+
     .wrapper {
         display: flex;
         flex-flow: column nowrap;
@@ -58,13 +59,15 @@
     }
 
     ul {
-        display: grid;
-        list-style: none;
-        padding: 0;
-        justify-content: space-between;
-        min-width: 100%;
-        grid-gap: 7px;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        display: flex;
+        flex-flow: column nowrap;
+
+        li {
+            display: flex;
+            flex-flow: row nowrap;
+
+            
+        }
     }
 
     #banner {

@@ -42,5 +42,16 @@
 <style lang="scss" scoped>
     .pop-up {
         position: fixed;
+        top: 30%;
+        left: 35%;
+        background: rgba(50, 50, 50, 0.8);
+        color: white;
+        width: 30vw;
+        height: 40vh;
+        display: flex;
+        flex-flow: column nowrap;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
     }
 </style>
