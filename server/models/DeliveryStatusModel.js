@@ -2,7 +2,7 @@ const modelMysql = require('../lib/mysqlOrm');
 
 //model of tasks-mysql
 function DeliveryStatusModel(){
-    tableName = 'delivery_status';
+    tableName = 'deliveryStatus';
     modelMysql.call(this, tableName);
 }
 
