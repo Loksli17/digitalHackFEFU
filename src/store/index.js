@@ -16,7 +16,7 @@ export default new Vuex.Store({
             return state.userProductBin;
         },
         getDeliveries(state) {
-            state.userDeliveries = JSON.parse(localStorage.getItem("deliveries"));
+            state.userDeliveries = JSON.parse(localStorage.getItem("deliveries")) || [];
             return state.userDeliveries;
         },
         async getProducts(state) {
@@ -40,20 +40,6 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        // async fetchProducts(state) {
-        //     try {
-        //         const res = await axios.get("http://localhost:3000/api/product");
-        //         state.products = res.data;
-        //     } catch (err) {
-        //         console.error(err);
-        //         this.products = [
-        //             {
-        //                 id: 0,
-        //                 name: "error"
-        //             }
-        //         ]
-        //     }
-        // },
         addToCart(state, payload) {
             const product = payload.product;
             const productData = {
@@ -67,13 +53,6 @@ export default new Vuex.Store({
             }
             if (!state.userProductBin.find(prod => prod.id === productData.id)) {
                 state.userProductBin.push(productData);
-                localStorage.setItem("bin", JSON.stringify(state.userProductBin));
-            }
-        },
-        addToDeliveries(state, payload) {
-            const deliveryData = payload.delivery;
-            if (!state.userProductBin.find(delivery => delivery.id === deliveryData.id)) {
-                state.userProductBin.push(deliveryData);
                 localStorage.setItem("bin", JSON.stringify(state.userProductBin));
             }
         },
@@ -92,6 +71,20 @@ export default new Vuex.Store({
         clearItemsInCart(state) {
             state.userDeliveries = [];
             localStorage.removeItem("bin");
+        },
+        // DELIVERY MUTATIONS
+        addToDeliveries(state, payload) {
+            const deliveryData = payload.delivery;
+            console.log(state.userDeliveries);
+            if (!state.userDeliveries.find(delivery => delivery.id === deliveryData.id)) {
+                state.userDeliveries.push(deliveryData);
+                console.log(state.userDeliveries);
+                localStorage.setItem("deliveries", JSON.stringify(state.userDeliveries));
+            }
+        },
+        removeDelivery(state, payload) {
+            state.userDeliveries = state.userDeliveries.filter(delivery => delivery !== payload.delivery);
+            localStorage.setItem("deliveries", JSON.stringify(state.userDeliveries));
         }
     }
 })

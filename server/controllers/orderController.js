@@ -1,19 +1,19 @@
 const
-	ProductModel = require('../models/ProductModel'),
-	OrderHasProductModel  = require('../models/OrderHasProductModel'),
-    OrderModel 	 = require('../models/OrderModel');
+	ProductModel         = require('../models/ProductModel'),
+	OrderHasProductModel = require('../models/OrderHasProductModel'),
+    OrderModel 	         = require('../models/OrderModel');
   
 const
 	OrderHasProduct = new OrderHasProductModel(),
-	Product = new ProductModel(),
-    Order 	= new OrderModel();
-
+	Product         = new ProductModel(),
+    Order 	        = new OrderModel();
 
 const
     DateModule = require('../lib/DateModule');
 
 
 exports.actionIndex = async (req, res) => {
+
 	let products = [];
 	let orders = await Order.find('all', {
 		select: [
@@ -24,7 +24,8 @@ exports.actionIndex = async (req, res) => {
 			'user.patronymic',
 			'user.studentGroup',
 			'user.course',			
-		],
+        ],
+        order: 'id DESC',
 		join: [			
 			['left', 'user', 'order.idCreator = user.id'],
 		],
@@ -49,8 +50,6 @@ exports.actionIndex = async (req, res) => {
         orders[i].products = products;
         orders[i].date     = DateModule.formatViewDate(orders[i].date);
     }
-    
-    console.log(orders[0]);
 	
 	res.send(orders);
 }
@@ -70,7 +69,7 @@ exports.actionView = async (req, res) => {
     }
 	
 	order = await Order.find('one',  {
-        where : {eq: {'id': id}},        
+        where: {eq: {'id': id}},        
     })
 	
 	if(order == undefined){
@@ -120,56 +119,53 @@ exports.indexAjax = async (req, res) => {
 	res.send(orders);	
 }
 
-exports.createOrder = async (req, res) =>{
+
+exports.createOrder = async (req, res) => {
+
 	const POST = req.body;
 	
 	let 
 		newOrder = {
-			isClose : 0,
+			isClose: 0,
 		},
-		lastOrder = [],
-		id = 0;	
+        lastOrder   = [],
+        result      = [],
+        orderFront  = [],
+        currentDate = {}, 
+        id          = 0; 
+ 
+    currentDate = new Date();
+    currentDate = DateModule.formatDbDate(currentDate);
+    
+    orderFront = JSON.parse(POST.body);
 	
-	let today = new Date(),
-		dd = today.getDate(),
-		mm = today.getMonth()+1, 
-		yyyy = today.getFullYear();
+    newOrder.date      = currentDate;
+    newOrder.idCreator = orderFront[0].userId;
+    
+    result = await Order.save({data: newOrder});
+    
+    if(result != true){
+        res.status(404).send({});
+    }
 	
+	lastOrder = await Order.find('one', {
+        order: 'id',
+        limit: 1,
+    });
+    
+    console.log(lastOrder);
 	
-	if(dd<10) {
-		dd = '0'+dd
-	} 
-
-	if(mm<10) {
-		mm = '0'+mm
-	} 
-
-	today = mm + '/' + dd + '/' + yyyy;
-	
-	if (POST.length < 0){
-		res.status(404);
-		res.send('404');
-		return;
-	}
-	
-	newOrder.date = today;
-	newOrder.idCreator = POST[0].userId;
-	await Order.save({data: newOrder});
-	
-	lastOrder = await Order.find('all', {
-		   order: 'id',
-	});
-	
-	id = lastOrder[0].id;
-	for(let i = 0; i < POST.length; i++){
-		await OrderHasProductModel.save({
+    id = lastOrder.id;
+    
+	for(let i = 0; i < orderFront.length; i++){
+		await OrderHasProduct.save({
 			data: {
-				count	 : POST[i].count,
-				productId: POST[i].productId,
-				orderId	 : POST[i].id,	
+				count	 : orderFront[i].count,
+				productId: orderFront[i].productId,
+				orderId	 : id,	
 			}
-		})
+		});
 	}
 	
-    res.send(POST);	
+    res.status(404).send({message: 'Заказ успешно сохранен'});	
 }	

@@ -1,20 +1,17 @@
 <template>
-    <div class="order">
-
-        <h2>#{{order.id}}</h2>
-
+    <li class="delivery">
         <div class="order-user">
             <h4>Студент</h4>
             <div>
-                {{ order.lastname }}
-                {{ order.firstname }}
-                {{ order.patronymic }}
+                {{ delivery.lastname }}
+                {{ delivery.firstname }}
+                {{ delivery.patronymic }}
             </div>
             <div>
-                {{ order.studentGroup }}
+                {{ delivery.studentGroup }}
             </div>
             <div>
-                {{ order.course }}
+                {{ delivery.course }}
             </div>
         </div>
 
@@ -22,7 +19,7 @@
             <h4>Товары</h4>
             <div
                 class="product"
-                v-for="product in order.products"
+                v-for="product in delivery.products"
                 v-bind:key="product.id"
             >
                 <div class="name">{{ product.name }}</div>
@@ -54,28 +51,26 @@
         </div>
 
         <div class="date">
-            {{ order.date }}
+            {{ delivery.date }}
         </div>
 
-        <!-- <a @click.prevent="AddToDeliveries" href="">Отликнуться на заказ</a> -->
-        <button @click="AddToDeliveries">Отликнуться на заказ</button>
-    </div>
+        <button @click="remove">УДАЛИТЬ</button>
+    </li>
 </template>
 
 <script>
     export default {
-        name: "order",
-        props: ["order"],
+        props: ["delivery"],
         methods: {
-            AddToDeliveries() {
-                this.$store.commit("addToDeliveries", { delivery: this.order });
+            remove() {
+                this.$store.commit("removeDelivery", { delivery: this.delivery });
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .order {
+    .delivery {
         display: grid;
         grid-gap: 10px;
         padding: 20px;
