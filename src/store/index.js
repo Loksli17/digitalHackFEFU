@@ -7,12 +7,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         userProductBin: [],
+        userDeliveries: [],
         products: []
     },
     getters: {
         getUserProductsBin(state) {
             state.userProductBin = JSON.parse(localStorage.getItem("bin"));
             return state.userProductBin;
+        },
+        getDeliveries(state) {
+            state.userDeliveries = JSON.parse(localStorage.getItem("deliveries"));
+            return state.userDeliveries;
         },
         async getProducts(state) {
             if (state.products.length !== 0) {
@@ -65,6 +70,13 @@ export default new Vuex.Store({
                 localStorage.setItem("bin", JSON.stringify(state.userProductBin));
             }
         },
+        addToDeliveries(state, payload) {
+            const deliveryData = payload.delivery;
+            if (!state.userProductBin.find(delivery => delivery.id === deliveryData.id)) {
+                state.userProductBin.push(deliveryData);
+                localStorage.setItem("bin", JSON.stringify(state.userProductBin));
+            }
+        },
         removeFromCart(state, payload) {
             state.userProductBin = state.userProductBin.filter(prod => prod !== payload.product);
             localStorage.setItem("bin", JSON.stringify(state.userProductBin));
@@ -76,6 +88,10 @@ export default new Vuex.Store({
                 state.userProductBin[state.userProductBin.indexOf(product)] = product;
                 localStorage.setItem("bin", JSON.stringify(state.userProductBin));
             }
+        },
+        clearItemsInCart(state) {
+            state.userDeliveries = [];
+            localStorage.removeItem("bin");
         }
     }
 })

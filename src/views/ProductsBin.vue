@@ -49,15 +49,20 @@
                     })
                 });
 
-                const dataToSend = JSON.stringify(arr);
+                if (this.userProducts.length) {
+                    const dataToSend = JSON.stringify(arr);
 
-                try {
-                    const res = await axios.post("http://localhost:3000/api/order/neworder", dataToSend);
-                    console.log(res.data);
-                    return true;
-                } catch (err) {
-                    console.error(err);
-                    return false;
+                    console.log(dataToSend);
+
+                    try {
+                        const res = await axios.post("http://localhost:3000/api/order/neworder", { body: dataToSend });
+                        console.log(res.data);
+                        this.$store.commit("clearItemsInCart");
+                        return true;
+                    } catch (err) {
+                        console.error(err);
+                        return false;
+                    }
                 }
             }
         }
@@ -65,7 +70,6 @@
 </script>
 
 <style lang="scss" scoped>
-
     .wrapper {
         display: flex;
         flex-flow: column nowrap;
@@ -80,8 +84,6 @@
         li {
             display: flex;
             flex-flow: row nowrap;
-
-            
         }
     }
 
