@@ -17,10 +17,10 @@
                 <span>{{ product.sname }}</span>
             </div>
             <span id="price">{{ product.price }} ₽</span>
-            <div class="order-button">В корзину</div>
+            <button @click="AddToCart" class="order-button">В корзину</button>
         </div>
         <div class="third-bin">
-            <button @click="AddToCart">Добавить в корзину</button>
+            <!-- <button @click="AddToCart">Добавить в корзину</button> -->
             <button @click="showInfo">hahhahaha</button>
         </div>
     </li>

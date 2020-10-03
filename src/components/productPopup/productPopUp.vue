@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pop-up">
         <div class="background"></div>
         <div>
             <h3>{{ productInfo.name }}</h3>
@@ -37,4 +37,7 @@
 </script>
 
 <style lang="scss" scoped>
+    .pop-up {
+        position: fixed;
+    }
 </style>
