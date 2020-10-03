@@ -1,12 +1,14 @@
 <template>
     <li>
-        <div class="image"
+        <div
+            class="image"
             :style="{
                 'background-image':
                     'url(' +
                     require('../../assets/img/products/' + product.img) +
                     ')',
-            }"></div>
+            }"
+        ></div>
         <h3>{{ product.name }}</h3>
         <div class="product-info">
             <span>{{ product.value }}</span>
@@ -15,10 +17,19 @@
                 <span>{{ product.sname }}</span>
             </div>
             <span id="price">{{ product.price }} ₽</span>
+<<<<<<< HEAD
             <div class="third-bin">
                 <button @click="AddToCart">В корзину</button>
             </div>
         </div>
+=======
+            <button @click="AddToCart" class="order-button">В корзину</button>
+        </div>
+        <div class="third-bin">
+            <!-- <button @click="AddToCart">Добавить в корзину</button> -->
+            <button @click="showInfo">hahhahaha</button>
+        </div>
+>>>>>>> 2276d957a0a91cc297eaa4333d886def4648c9cc
     </li>
 </template>
 
@@ -30,17 +41,20 @@
             AddToCart() {
                 // this.$emit("add-to-cart", this.product);
                 this.$store.commit("addToCart", { product: this.product });
+            },
+            showInfo() {
+                this.$emit("showPopUp", this.product.id);
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;400&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100;400&display=swap");
 
     .market-logo {
         width: 50%;
-        background-image: url('../../assets/img/products/logo1.png');
+        background-image: url("../../assets/img/products/logo1.png");
         background-repeat: no-repeat;
     }
 
@@ -51,7 +65,7 @@
         justify-content: space-between;
         text-align: center;
 
-        background: #F0F0F0;
+        background: #f0f0f0;
         padding: 20px;
         margin: 5px;
         box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.2);
@@ -69,7 +83,7 @@
             display: grid;
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
-            font-family: 'Exo 2', sans-serif;
+            font-family: "Exo 2", sans-serif;
 
             .market {
                 display: flex;
@@ -106,8 +120,8 @@
     }
 
     .order-button {
-        background-color: #4476CC;
-        color: #FFFFFF;
+        background-color: #4476cc;
+        color: #ffffff;
         width: 90%;
         text-align: center;
         padding: 5px 5px;

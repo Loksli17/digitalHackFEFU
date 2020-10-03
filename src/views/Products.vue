@@ -6,6 +6,7 @@
                 v-for="product in products"
                 :key="product.id"
                 :product="product"
+                @showPopUp="showPopUp"
             />
         </ul>
     </div>
@@ -29,9 +30,13 @@
             this.fetchProducts();
         },
         methods: {
+            showPopUp(id) {
+                this.$emit("showPopUpProd", id);
+            },
             async fetchProducts() {
                 try {
                     const res = await axios.get("http://localhost:3000/api/product");
+                    console.log(res.data);
                     this.products = res.data;
                 } catch (err) {
                     console.error(err);
