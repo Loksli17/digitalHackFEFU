@@ -28,10 +28,10 @@ exports.actionIndex = async (req, res) => {
 }	
 
 exports.actionView = async (req, res) => {
-	let GET = req.query;
-	
-	let id  = GET.id;
-	let product = {};
+	let 
+		GET = req.query,
+		id  = GET.id,
+	    product = {};
 	
 	if(isNaN(id)){
 		res.status(404)
@@ -56,19 +56,11 @@ exports.actionView = async (req, res) => {
 
 exports.indexAjax = async (req, res) => {
 	
-	if(!req.xhr){
-		res.status(404);
-        res.send('404');
-        return;
-    }
-	
 	const
         POST = req.body,
         GET  = req.query;
 	
 	let
-        data   	  = POST.data,
-        productId = POST.productId,
         skip      = POST.skip,
         limit     = POST.limit;
 	
@@ -82,12 +74,11 @@ exports.indexAjax = async (req, res) => {
 		'shop.name as sname'
 		],		
 		join: [
-            ['inner', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
-            ['inner', 'shop', 'shop.id = shop_has_product.idShop'],
+            ['left', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
+            ['left', 'shop', 'shop.id = shop_has_product.idShop'],
         ],	
 		limit: skip + ', ' + limit,
 	});
 	
-	res.send(products);
-	return;
+	res.send(products);	
 }
