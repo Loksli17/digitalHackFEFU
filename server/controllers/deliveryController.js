@@ -10,7 +10,31 @@ const
 
     
 exports.actionIndex = async (req, res) => {
-
+	const GET = req.query;
+	console.log(GET);
+	let 
+		delivery = {},
+		id = GET.id;
+	
+	delivery = await Delivery.find('one',{
+		select: [
+			'user.firstname',
+			'user.lastname',
+			'user.patronymic',
+			'user.raiting',
+			'order.id as oid',
+			'orderStatus.name',
+		
+		],
+		join: [
+			['left', 'orderStatus', 'orderStatus.id = delivery.id'],
+			['left', 'delivery_has_order', 'delivery_has_order.deliveryId = delivery.id'],
+			['left', 'order', 'order.id = delivery_has_order.orderId'],
+			['left', 'user', 'user.id = delivery.courierId'],
+		]
+	});
+	
+	res.send(delivery);
 }
 
 exports.actionView = async (req, res) => {
