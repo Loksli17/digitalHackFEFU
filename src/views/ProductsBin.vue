@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <!-- <h3>Корзина</h3> -->
-        <img id="banner" src="../assets/img/products/banner.jpg" alt="banner">
+        <img id="banner" src="../assets/img/products/banner.jpg" alt="banner" />
         <ul>
             <BinProduct
                 v-for="product in userProducts"
@@ -14,10 +14,11 @@
             <input type="submit" value="ПАДТВЕДРИТЬ ЗАКАЗ" />
         </form>
     </div>
-</template>users
+</template>
 
 <script>
     import BinProduct from "../components/ProductsBin/binPorduct.vue";
+    import axios from "axios";
 
     export default {
         components: {
@@ -29,8 +30,28 @@
             }
         },
         methods: {
-            submitOrder() {
-                console.log(JSON.stringify(this.userProducts));
+            async submitOrder() {
+                let arr = [];
+
+                this.userProducts.forEach(product => {
+                    arr.push({
+                        productId: product.id,
+                        userId: 3,
+                        count: product.amount
+                    })
+                });
+
+                const dataToSend = JSON.stringify(arr);
+                console.log(dataToSend);
+
+                try {
+                    const res = await axios.post("http://localhost:3000/api/order/neworder", dataToSend);
+                    console.log(res.data);
+                    return true;
+                } catch (err) {
+                    console.error(err);
+                    return false;
+                }
             }
         }
     }

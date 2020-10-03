@@ -1,5 +1,5 @@
 const
-	ProductModel = require('../models/ProductModel')
+	ProductModel = require('../models/ProductModel'),
     OrderModel 	 = require('../models/OrderModel');
   
 const

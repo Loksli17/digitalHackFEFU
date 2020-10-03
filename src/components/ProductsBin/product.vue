@@ -17,10 +17,12 @@
                 <span>{{ product.sname }}</span>
             </div>
             <span id="price">{{ product.price }} ₽</span>
-            <button @click="AddToCart" class="order-button">В корзину</button>
+            <div class="third-bin">
+                <button @click="AddToCart">В корзину</button>
+            </div>
         </div>
+
         <div class="third-bin">
-            <!-- <button @click="AddToCart">Добавить в корзину</button> -->
             <button @click="showInfo">hahhahaha</button>
         </div>
     </li>
@@ -62,9 +64,12 @@
         padding: 20px;
         margin: 5px;
         box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.2);
+        font-family: "Exo 2", sans-serif;
 
         .image {
             background: no-repeat center;
+            width: 90%;
+            height: 270px;
         }
 
         .product-info {
@@ -85,16 +90,29 @@
                 }
             }
 
+            .third-bin {
+                background-color: #4476cc;
+
+                button {
+                    background: none;
+                    border: 0px;
+                    color: white;
+                    font-size: 14px;
+                    text-align: center;
+                    width: 100%;
+                    line-height: 30px;
+                }
+
+                &:hover {
+                    background: red;
+                }
+            }
+
             #price {
                 line-height: 35px;
                 font-weight: bold;
             }
         }
-    }
-
-    .image {
-        width: 90%;
-        height: 270px;
     }
 
     .order-button {

@@ -36,7 +36,6 @@
             async fetchProducts() {
                 try {
                     const res = await axios.get("http://localhost:3000/api/product");
-                    console.log(res.data);
                     this.products = res.data;
                 } catch (err) {
                     console.error(err);
