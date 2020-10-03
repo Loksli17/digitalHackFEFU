@@ -11,13 +11,18 @@
             }"
         >
             <h3>{{ product.name }}</h3>
-            <!-- <h3>{{product.}}</h3> -->
         </div>
         <div class="second-row">
             <h4>{{ product.desc }}</h4>
             <h4>{{ product.price }}₽</h4>
         </div>
-        <div class="third-bin">
+        <div class="third-row">
+            <h4>Количество:</h4>
+            <input type="number" v-model="product.amount" /><span
+                >/{{ product.value }}</span
+            >
+        </div>
+        <div class="fourth-bin">
             <button @click="removeFromCart">Убрать из корзины</button>
         </div>
     </li>
@@ -27,6 +32,23 @@
     export default {
         name: "BinProduct",
         props: ["product"],
+        data() {
+            return {
+                productData: {}
+            }
+        },
+        mounted() {
+            // this.productData = this.product;
+            // this.productData = {
+            //     desc: this.product.desc,
+            //     id: this.product.id,
+            //     img: this.product.img,
+            //     name: this.product.name,
+            //     price: this.product.price,
+            //     value: this.product.value,
+            //     amount: 1
+            // }
+        },
         methods: {
             removeFromCart() {
                 // this.$emit("add-to-cart", this.product);
@@ -45,6 +67,10 @@
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
+
+            input {
+                height: 20px;
+            }
         }
     }
 

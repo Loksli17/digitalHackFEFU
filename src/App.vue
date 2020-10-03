@@ -1,16 +1,31 @@
 <template>
     <div id="app">
+        <ProductPopUp :id="id" v-if="popUpState" />
         <Menu />
 
-        <router-view />
+        <router-view @showPopUpProd="togglePopUp" />
     </div>
 </template>
 
 <script>
     import Menu from "../src/components/menu/menu.vue";
+    import ProductPopUp from "../src/components/productPopup/productPopUp.vue";
     export default {
         components: {
-            Menu
+            Menu,
+            ProductPopUp
+        },
+        data() {
+            return {
+                popUpState: false,
+                id: 0
+            }
+        },
+        methods: {
+            togglePopUp(id) {
+                this.id = id;
+                this.popUpState = !this.popUpState;
+            }
         }
     }
 </script>

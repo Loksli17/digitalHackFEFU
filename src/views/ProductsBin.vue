@@ -8,7 +8,10 @@
                 :product="product"
             />
         </ul>
-        <button @click="submitOrder">ПАДТВЕРДЕТЬ ЗОКАЗ</button>
+        <!-- <button @click="submitOrder">ПАДТВЕРДЕТЬ ЗОКАЗ</button> -->
+        <form action="" method="POST" @submit.prevent="submitOrder">
+            <input type="submit" value="ПАДТВЕДРИТЬ ЗАКАЗ" />
+        </form>
     </div>
 </template>
 

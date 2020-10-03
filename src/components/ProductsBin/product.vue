@@ -11,7 +11,6 @@
             }"
         >
             <h3>{{ product.name }}</h3>
-            <!-- <h3>{{product.}}</h3> -->
         </div>
         <div class="second-row">
             <h4>{{ product.desc }}</h4>
@@ -19,6 +18,7 @@
         </div>
         <div class="third-bin">
             <button @click="AddToCart">Добавить в корзину</button>
+            <button @click="showInfo">hahhahaha</button>
         </div>
     </li>
 </template>
@@ -31,6 +31,9 @@
             AddToCart() {
                 // this.$emit("add-to-cart", this.product);
                 this.$store.commit("addToCart", { product: this.product });
+            },
+            showInfo() {
+                this.$emit("showPopUp", this.product.id);
             }
         }
     }
