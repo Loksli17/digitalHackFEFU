@@ -1,7 +1,9 @@
 const
+	ShopHasProductModel = require('../models/ShopHasProductModel'),
     ProductModel = require('../models/ProductModel');
   
 const
+	ShopHasProduct	 = new ShopHasProductModel(),
     Product = new ProductModel();
    
 
@@ -34,6 +36,8 @@ exports.actionView = async (req, res) => {
 	let 
 		GET = req.query,
 		id  = GET.id,
+		productId = 0,
+		shopHasProduct = {},
 	    product = {};
 	
 	if(isNaN(id)){
@@ -41,6 +45,12 @@ exports.actionView = async (req, res) => {
         res.send('404');
         return;
     }
+	
+	shopHasProduct = await ShopHasProduct.find('one', {
+		where: {eq: {'id' : id}},
+	});
+	
+	id = shopHasProduct.idProduct;
 	
 	product = await Product.find('one',  {
         where : {eq: {'id': id}},        
