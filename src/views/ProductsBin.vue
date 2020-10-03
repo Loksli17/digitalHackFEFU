@@ -48,10 +48,10 @@
 
 <style lang="scss" scoped>
     ul {
-        display: grid;
+        // display: grid;
         list-style: none;
         padding: 0;
-        grid-template-columns: repeat(3, 1fr);
+        // grid-template-columns: repeat(3, 1fr);
 
         li {
             background: #ccc;
