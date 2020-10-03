@@ -15,7 +15,7 @@ exports.actionIndex = async (req, res) => {
         
     
     users = await User.find('all', {
-        select   : ['lastname', 'firstname', 'raiting'],
+        select   : ['lastname', 'firstname', 'raiting', 'id'],
         order    : 'raiting',
         limit    : 30,
         orderDesc: true,

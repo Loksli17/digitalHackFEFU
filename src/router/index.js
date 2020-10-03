@@ -29,6 +29,11 @@ const routes = [
       path: '/products-bin',
       name: 'Корзина',
       component: () => import('../views/ProductsBin.vue')
+  },
+  {
+      path: '*',
+      name: '404',
+      component: () => import('../views/404.vue')
   }
 ]
 

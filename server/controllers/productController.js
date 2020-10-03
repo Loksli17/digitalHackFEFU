@@ -23,9 +23,12 @@ exports.actionIndex = async (req, res) => {
         ],		
 	});
 	
-	res.send(products);
+    res.send(products);
+    
+    console.log(products);
 	return;
 }	
+
 
 exports.actionView = async (req, res) => {
 	let 

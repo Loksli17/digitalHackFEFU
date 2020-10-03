@@ -6,6 +6,7 @@ const
 	Product = new ProductModel(),
     Order 	= new OrderModel();
 
+    
 exports.actionIndex = async (req, res) => {
 	let products = [];
 	let orders = await Order.find('all', {
@@ -45,11 +46,12 @@ exports.actionIndex = async (req, res) => {
 	res.send(orders);
 }
 
+
 exports.actionView = async (req, res) => {
 	let 
-		GET = req.query,
-		id  = GET.id,
-	    order = {},
+		GET      = req.query,
+		id       = GET.id,
+	    order    = {},
 		products = [];
 	
 	if(isNaN(id)){
@@ -88,6 +90,7 @@ exports.actionView = async (req, res) => {
 	res.send(order);
 	return;
 }
+
 
 exports.indexAjax = async (req, res) => {
 	const
