@@ -8,7 +8,7 @@ const
 exports.actionIndex = async (req, res) => {
     let products = await Product.find('all', {
 		select: [
-		
+		'product.id as id'
 		'product.price',
 		'product.value',
 		'product.desc',
@@ -18,8 +18,8 @@ exports.actionIndex = async (req, res) => {
 		],
 		
 		join: [
-            ['inner', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
-            ['inner', 'shop', 'shop.id = shop_has_product.idShop'],
+            ['left', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
+            ['left', 'shop', 'shop.id = shop_has_product.idShop'],
         ],		
 	});
 	
