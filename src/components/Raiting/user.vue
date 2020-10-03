@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name : "UserRaiting",
-        props: ["userRaiting"]
+        name: "UserRaiting",
+        props: ["user"]
     }
 </script>
