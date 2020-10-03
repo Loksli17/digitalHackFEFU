@@ -16,7 +16,7 @@ exports.actionIndex = async (req, res) => {
 		delivery = {},
 		id = GET.id;
 	
-	delivery = await Delivery.find('one',{
+	delivery = await Delivery.find('all',{
 		select: [
 			'user.firstname',
 			'user.lastname',
