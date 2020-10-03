@@ -1,15 +1,13 @@
 <template>
     <li>
-        <div class="image" :style="'background-image: url(`assets\img\`' + products.img + ')'")>
-
-        </div>
-        <div class="first-row">
+        <div class="image"></div>
+        <div class="first-row" :style="imgBackground">
             <h3>{{ product.name }}</h3>
-            <h3>{{product.}}</h3>
+            <!-- <h3>{{product.}}</h3> -->
         </div>
         <div class="second-row">
-            <h4>{{product.desc}}</h4>
-            <h4>{{product.price}}₽</h4>
+            <h4>{{ product.desc }}</h4>
+            <h4>{{ product.price }}₽</h4>
         </div>
     </li>
 </template>
@@ -17,7 +15,12 @@
 <script>
     export default {
         name: "Product",
-        props: ["product"]
+        props: ["product"],
+        computed: {
+            imgBackground() {
+                return "'background-image: url(`assets/img/`' + products.img + ')')"
+            }
+        }
     }
 </script>
 
