@@ -21,6 +21,15 @@
                 id: 0
             }
         },
+        watch: {
+            popUpState: function () {
+                if (this.popUpState) {
+                    document.body.style.overflowY = "hidden";
+                } else {
+                    document.body.style.overflowY = "";
+                }
+            }
+        },
         methods: {
             togglePopUp(id) {
                 if (typeof id === "number") {

@@ -23,7 +23,7 @@
         </div>
 
         <div class="third-bin">
-            <button @click="showInfo">hahhahaha</button>
+            <button @click="showInfo">О товаре</button>
         </div>
     </li>
 </template>
@@ -68,7 +68,7 @@
 
         .image {
             background: no-repeat center;
-            width: 90%;
+            width: 100%;
             height: 270px;
         }
 
@@ -79,6 +79,7 @@
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
             font-family: "Exo 2", sans-serif;
+            margin-bottom: 10px;
 
             .market {
                 display: flex;
@@ -90,28 +91,29 @@
                 }
             }
 
-            .third-bin {
-                background-color: #4476cc;
-
-                button {
-                    background: none;
-                    border: 0px;
-                    color: white;
-                    font-size: 14px;
-                    text-align: center;
-                    width: 100%;
-                    line-height: 30px;
-                }
-
-                &:hover {
-                    background: red;
-                }
-            }
-
             #price {
                 line-height: 35px;
                 font-weight: bold;
             }
+        }
+    }
+
+    .third-bin {
+        background-color: #4476cc;
+
+        button {
+            width: 100%;
+            height: 100%;
+            background: none;
+            border: 0px;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        &:hover {
+            background: red;
         }
     }
 

@@ -1,6 +1,6 @@
 <template>
     <div class="pop-up">
-        <div class="background" @click="closePopUp"></div>
+        <div class="background" v-on:click="$emit('close-pop-up')"></div>
         <div>
             <h3>{{ productInfo.name }}</h3>
             <p>{{ productInfo.desc }}</p>
@@ -25,6 +25,7 @@
         methods: {
             closePopUp() {
                 this.$emit("close-pop-up");
+                console.log("hahahahah");
             },
             async fetchProductInfo() {
                 try {
@@ -42,5 +43,21 @@
 <style lang="scss" scoped>
     .pop-up {
         position: fixed;
+        top: 30%;
+        left: 35%;
+        background: rgba(50, 50, 50, 0.8);
+        color: white;
+        width: 30vw;
+        height: 40vh;
+        display: flex;
+        flex-flow: column nowrap;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+        .background {
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>
