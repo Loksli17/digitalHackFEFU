@@ -18,38 +18,20 @@
             <h4>{{ product.price }}₽</h4>
         </div>
         <div class="third-bin">
-            <button @click="AddToCart">Добавить в корзину</button>
+            <button @click="removeFromCart">Убрать из корзины</button>
         </div>
     </li>
 </template>
 
 <script>
     export default {
-        name: "Product",
+        name: "BinProduct",
         props: ["product"],
         methods: {
-            AddToCart() {
+            removeFromCart() {
                 // this.$emit("add-to-cart", this.product);
-                this.$store.commit("addToCart", { product: this.product });
-                console.log(this.$store.state.userProductBin);
+                this.$store.commit("removeFromCart", { product: this.product });
             }
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    li {
-        display: flex;
-        flex-flow: column nowrap;
-
-        div {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-        }
-    }
-
-    .image {
-        min-width: 100%;
-    }
-</style>

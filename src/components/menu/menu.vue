@@ -5,7 +5,8 @@
             <router-link to="/">Home</router-link>
             <router-link to="/users">Users</router-link>
             <router-link to="/raiting">Рейтинг</router-link>
-            <router-link to="/products-bin">Корзина</router-link> 
+            <router-link to="/products">Товары</router-link>
+            <router-link to="/products-bin">Корзина</router-link>
         </div>
 
         <div>тут кнопки выход я так думаю</div>

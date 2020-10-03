@@ -1,63 +1,24 @@
 <template>
     <div>
-        <h3>Корзина</h3>
-        <ul>
-            <Product
-                v-for="product in products"
-                :key="product.id"
-                :product="product"
-            />
-        </ul>
+        <BinProduct
+            v-for="product in userProducts"
+            :key="product.id"
+            :product="product"
+        />
     </div>
 </template>
 
-
 <script>
-    import Product from "../components/ProductsBin/product.vue";
-    import axios from "axios";
+    import BinProduct from "../components/ProductsBin/binPorduct.vue";
 
     export default {
         components: {
-            Product
+            BinProduct
         },
-        data() {
-            return {
-                products: []
-            }
-        },
-        created() {
-            this.fetchProducts();
-        },
-        methods: {
-            async fetchProducts() {
-                try {
-                    const res = await axios.get("http://localhost:3000/api/product");
-                    this.products = res.data;
-                } catch (err) {
-                    console.error(err);
-                    this.products = [
-                        {
-                            id: 0,
-                            name: "error"
-                        }
-                    ]
-                }
+        computed: {
+            userProducts() {
+                return this.$store.getters.getUserProductsBin;
             }
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    ul {
-        display: grid;
-        list-style: none;
-        padding: 0;
-        grid-template-columns: repeat(3, 1fr);
-
-        li {
-            background: #ccc;
-            padding: 20px;
-            margin: 5px;
-        }
-    }
-</style>

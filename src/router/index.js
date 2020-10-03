@@ -21,6 +21,11 @@ const routes = [
       component: () => import('../views/Raiting.vue')
   },
   {
+      path: '/products',
+      name: 'Товары',
+      component: () => import('../views/Products.vue')
+  },
+  {
       path: '/products-bin',
       name: 'Корзина',
       component: () => import('../views/ProductsBin.vue')
