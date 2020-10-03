@@ -14,7 +14,7 @@
             <input type="submit" value="ПАДТВЕДРИТЬ ЗАКАЗ" />
         </form>
     </div>
-</template>users
+</template>
 
 <script>
     import BinProduct from "../components/ProductsBin/binPorduct.vue";
@@ -31,18 +31,26 @@
         },
         methods: {
             async submitOrder() {
-                // console.log(JSON.stringify(this.userProducts));
-                // const dataToSend = JSON.stringify(this.userProducts);
-                const dataToSend = {
-                    чо: "отправлять"
-                };
+                let arr = [];
+
+                this.userProducts.forEach(product => {
+                    arr.push({
+                        productId: product.id,
+                        userId: 3,
+                        count: product.amount
+                    })
+                });
+
+                const dataToSend = JSON.stringify(arr);
+                console.log(dataToSend);
 
                 try {
-                    const res = axios.post(`http://localhost:3000/api/order/`, dataToSend);
+                    const res = await axios.post("http://localhost:3000/api/order/neworder", dataToSend);
                     console.log(res.data);
                     return true;
                 } catch (err) {
                     console.error(err);
+                    return false;
                 }
             }
         }
