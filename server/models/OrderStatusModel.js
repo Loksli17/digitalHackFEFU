@@ -1,22 +1,22 @@
 const modelMysql = require('../lib/mysqlOrm');
 
 //model of tasks-mysql
-function OrderStatusModel(){
-    tableName = 'orderstatus';
+function DeliveryStatusModel(){
+    tableName = 'deliveryStatus';
     modelMysql.call(this, tableName);
 }
 
 //наследование
-OrderStatusModel.prototype = Object.create(modelMysql.prototype);
-OrderStatusModel.prototype.constructor = OrderStatusModel;
+DeliveryStatusModel.prototype = Object.create(modelMysql.prototype);
+DeliveryStatusModel.prototype.constructor = DeliveryStatusModel;
 
 
-OrderStatusModel.prototype.rules = {
+DeliveryStatusModel.prototype.rules = {
     string  : ['name'],
    };
 
 
-OrderStatusModel.prototype.rulesMessages = {
+DeliveryStatusModel.prototype.rulesMessages = {
     string  : 'Поле должно быть строкой',
     integer : 'Поле должно быть числом',
     required: 'Данное поле является обязательным',
@@ -28,10 +28,10 @@ OrderStatusModel.prototype.rulesMessages = {
 }
 
 
-OrderStatusModel.prototype.fields = {
+DeliveryStatusModel.prototype.fields = {
     id        : 'ID',
     name      : 'Название',
 }
 
 
-module.exports = OrderStatusModel;
+module.exports = DeliveryStatusModel;

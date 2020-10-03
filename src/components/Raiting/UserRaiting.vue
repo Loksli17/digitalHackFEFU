@@ -7,6 +7,17 @@
     </tr>
 </template>
 
+<style lang="scss" scoped>
+
+    td{
+        padding: 10px 15px;
+    }
+
+    tr > td{
+    }
+
+</style>
+
 <script>
     export default {
         name: "UserRaiting",
