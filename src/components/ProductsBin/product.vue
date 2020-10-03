@@ -96,6 +96,10 @@
                 font-weight: bold;
             }
         }
+
+        .third-bin {
+            width: 100px;
+        }
     }
 
     .third-bin {

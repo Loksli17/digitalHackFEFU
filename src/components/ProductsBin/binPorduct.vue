@@ -22,8 +22,8 @@
                 v-model="product.amount"
                 @change="updateItemInCart"
             />
-            <span id="price">{{ product.price * product.amount }} ₽</span>
         </div>
+        <div id="price">{{ product.price * product.amount }} ₽</div>
         <div class="fourth-bin">
             <button @click="removeFromCart">Убрать из корзины</button>
         </div>
@@ -67,8 +67,9 @@
     li {
         display: flex;
         flex-flow: row nowrap;
-        padding: 10px 0px;
         width: 100%;
+        border: 1px black solid;
+        margin-top: 5px;
 
 
         div {
@@ -76,17 +77,32 @@
             flex-flow: row nowrap;
             justify-content: space-between;
             align-items: center;
-            border: 1px black solid;
-            padding: 0px 15px;
+            border-right: 1px black solid;
             font-size: 12px;
+            padding: 5px 15px;
 
             &:nth-child(2) {
                 width: 200px;
             }
 
             &:nth-child(3) {
-                width: 50px;
-                text-align: center;
+                width: 30px;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &:nth-child(4) {
+                width: 400px;
+            }
+
+            &:nth-child(5) {
+                width: 40px;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: center;
             }
 
             input {
