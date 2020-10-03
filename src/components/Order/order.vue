@@ -1,5 +1,8 @@
 <template>
     <div class="order">
+
+        <h2>#{{order.id}}</h2>
+
         <div class="order-user">
             <h4>Студент</h4>
             <div>
