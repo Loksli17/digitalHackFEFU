@@ -55,7 +55,38 @@ exports.actionView = async (req, res) => {
 
 
 exports.indexAjax = async (req, res) => {
-	let products = await Product.find('all');
+	
+	if(!req.xhr){
+		res.status(404);
+        res.send('404');
+        return;
+    }
+	
+	const
+        POST = req.body,
+        GET  = req.query;
+	
+	let
+        data   	  = POST.data,
+        productId = POST.productId,
+        skip      = POST.skip,
+        limit     = POST.limit;
+	
+	let products = await Product.find('all', {
+		select: [
+		'product.price',
+		'product.value',
+		'product.desc',
+		'product.img',
+		'product.name as name',
+		'shop.name as sname'
+		],		
+		join: [
+            ['inner', 'shop_has_product', 'shop_has_product.idProduct = product.id'],
+            ['inner', 'shop', 'shop.id = shop_has_product.idShop'],
+        ],	
+		limit: skip + ', ' + limit,
+	});
 	
 	res.send(products);
 	return;
