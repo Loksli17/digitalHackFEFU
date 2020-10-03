@@ -8,6 +8,7 @@
             <router-link to="/products">Товары</router-link>
             <router-link to="/orders">Заказы</router-link>
             <router-link to="/products-bin">Корзина</router-link>
+            <router-link to="/delivery-bin">Доставки</router-link>
         </div>
 
         <div>тут кнопки выход я так думаю</div>
