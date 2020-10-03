@@ -6,7 +6,7 @@ const
 	Product = new ProductModel(),
     Order 	= new OrderModel();
 
-    
+
 exports.actionIndex = async (req, res) => {
 	let products = [];
 	let orders = await Order.find('all', {
@@ -16,11 +16,11 @@ exports.actionIndex = async (req, res) => {
 			'user.firstname',
 			'user.lastname',
 			'user.patronymic',
-			'user.group',
+			'user.studentGroup',
 			'user.course',			
 		],
 		join: [			
-			['left', 'user', 'order.idUser = user.id'],
+			['left', 'user', 'order.idCreator = user.id'],
 		],
 	});
 		
@@ -34,8 +34,8 @@ exports.actionIndex = async (req, res) => {
 				'order_has_product.count',
 			],			
 			join:[
-				['inner', 'order_has_product','order_has_product.idProduct = product.id'],
-				['inner', 'order', 'order_has_product.idOrder = order.id'],
+				['inner', 'order_has_product','order_has_product.productId = product.id'],
+				['inner', 'order', 'order_has_product.orderId = order.id'],
 			],
 			where : {eq: {'order.id': orders[i].id}},
 		});
