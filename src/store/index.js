@@ -9,6 +9,7 @@ export default new Vuex.Store({
     },
     getters: {
         getUserProductsBin(state) {
+            state.userProductBin = JSON.parse(localStorage.getItem("bin"));
             return state.userProductBin;
         }
     },
@@ -17,10 +18,12 @@ export default new Vuex.Store({
             const product = payload.product;
             if (!state.userProductBin.includes(product)) {
                 state.userProductBin.push(payload.product);
+                localStorage.setItem("bin", JSON.stringify(state.userProductBin));
             }
         },
         removeFromCart(state, payload) {
             state.userProductBin = state.userProductBin.filter(prod => prod !== payload.product);
+            localStorage.setItem("bin", JSON.stringify(state.userProductBin));
         }
     }
 })

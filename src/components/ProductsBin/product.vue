@@ -31,7 +31,6 @@
             AddToCart() {
                 // this.$emit("add-to-cart", this.product);
                 this.$store.commit("addToCart", { product: this.product });
-                console.log(this.$store.state.userProductBin);
             }
         }
     }
