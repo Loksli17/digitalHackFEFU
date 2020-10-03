@@ -9,12 +9,16 @@
                 :product="product"
             />
         </ul>
+        <div>
+            <span>Сумма заказа: </span>
+            <span>{{ sum }}₽</span>
+        </div>
         <!-- <button @click="submitOrder">ПАДТВЕРДЕТЬ ЗОКАЗ</button> -->
         <form action="" method="POST" @submit.prevent="submitOrder">
-            <input type="submit" value="ПАДТВЕДРИТЬ ЗАКАЗ" />
+            <input type="submit" value="ПОДТВЕДРИТЬ ЗАКАЗ" />
         </form>
     </div>
-</template>users
+</template>
 
 <script>
     import BinProduct from "../components/ProductsBin/binPorduct.vue";
@@ -27,22 +31,33 @@
         computed: {
             userProducts() {
                 return this.$store.getters.getUserProductsBin;
+            },
+            sum() {
+                let arr = this.$store.getters.getUserProductsBin;
+                return arr.reduce((acc, current) => acc + current.price * current.amount, 0);
             }
         },
         methods: {
             async submitOrder() {
-                // console.log(JSON.stringify(this.userProducts));
-                // const dataToSend = JSON.stringify(this.userProducts);
-                const dataToSend = {
-                    чо: "отправлять"
-                };
+                let arr = [];
+
+                this.userProducts.forEach(product => {
+                    arr.push({
+                        productId: product.id,
+                        userId: 3,
+                        count: product.amount
+                    })
+                });
+
+                const dataToSend = JSON.stringify(arr);
 
                 try {
-                    const res = axios.post(`http://localhost:3000/api/order/`, dataToSend);
+                    const res = await axios.post("http://localhost:3000/api/order/neworder", dataToSend);
                     console.log(res.data);
                     return true;
                 } catch (err) {
                     console.error(err);
+                    return false;
                 }
             }
         }

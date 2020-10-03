@@ -5,16 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        userProductBin: [],
-        showPopUp: false
+        userProductBin: []
     },
     getters: {
         getUserProductsBin(state) {
             state.userProductBin = JSON.parse(localStorage.getItem("bin"));
             return state.userProductBin;
-        },
-        getPopUpState(state) {
-            return state.showPopUp;
         }
     },
     mutations: {
@@ -38,8 +34,13 @@ export default new Vuex.Store({
             state.userProductBin = state.userProductBin.filter(prod => prod !== payload.product);
             localStorage.setItem("bin", JSON.stringify(state.userProductBin));
         },
-        togglePopUpState(state) {
-            state.showPopUp = !state.showPopUp;
+        updateItemInCart(state, payload) {
+            const product = payload.product;
+            if (state.userProductBin.find(prod => prod.id === product.id)) {
+                // state.userProductBin.push(product);
+                state.userProductBin[state.userProductBin.indexOf(product)] = product;
+                localStorage.setItem("bin", JSON.stringify(state.userProductBin));
+            }
         }
     }
 })

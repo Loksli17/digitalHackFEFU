@@ -12,7 +12,7 @@ OrderModel.prototype.constructor = OrderModel;
 
 
 OrderModel.prototype.rules = {
-    integer : ['idUser'],
+    integer : ['isClose', 'idCreator'],
     date    : ['date'],
 };
 

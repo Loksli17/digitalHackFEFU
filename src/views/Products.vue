@@ -9,6 +9,7 @@
                 @showPopUp="showPopUp"
             />
         </ul>
+        <button @click="fetchMoreProducts">больше</button>
     </div>
 </template>
 
@@ -34,6 +35,20 @@
                 this.$emit("showPopUpProd", id);
             },
             async fetchProducts() {
+                try {
+                    const res = await axios.get("http://localhost:3000/api/product");
+                    this.products = res.data;
+                } catch (err) {
+                    console.error(err);
+                    this.products = [
+                        {
+                            id: 0,
+                            name: "error"
+                        }
+                    ]
+                }
+            },
+            async fetchMoreProducts() {
                 try {
                     const res = await axios.get("http://localhost:3000/api/product");
                     this.products = res.data;

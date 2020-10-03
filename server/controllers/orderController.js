@@ -1,10 +1,16 @@
 const
 	ProductModel = require('../models/ProductModel'),
+	OrderHasProductModel  = require('../models/OrderHasProductModel'),
     OrderModel 	 = require('../models/OrderModel');
   
 const
+	OrderHasProduct = new OrderHasProductModel(),
 	Product = new ProductModel(),
     Order 	= new OrderModel();
+
+
+const
+    DateModule = require('../lib/DateModule');
 
 
 exports.actionIndex = async (req, res) => {
@@ -31,7 +37,7 @@ exports.actionIndex = async (req, res) => {
 				'product.name',
 				'product.img',
 				'product.desc',
-				'order_has_product.count',
+				'order_has_product.count as count',
 			],			
 			join:[
 				['inner', 'order_has_product','order_has_product.productId = product.id'],
@@ -40,8 +46,11 @@ exports.actionIndex = async (req, res) => {
 			where : {eq: {'order.id': orders[i].id}},
 		});
 		
-		orders[i].products = products;
-	}
+        orders[i].products = products;
+        orders[i].date     = DateModule.formatViewDate(orders[i].date);
+    }
+    
+    console.log(orders[0]);
 	
 	res.send(orders);
 }
@@ -109,4 +118,58 @@ exports.indexAjax = async (req, res) => {
 	});
 	
 	res.send(orders);	
+}
+
+exports.createOrder = async (req, res) =>{
+	const POST = req.body;
+	
+	let 
+		newOrder = {
+			isClose : 0,
+		},
+		lastOrder = [],
+		id = 0;	
+	
+	let today = new Date(),
+		dd = today.getDate(),
+		mm = today.getMonth()+1, 
+		yyyy = today.getFullYear();
+	
+	
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	today = mm + '/' + dd + '/' + yyyy;
+	
+	if (POST.length < 0){
+		res.status(404);
+		res.send('404');
+		return;
+	}
+	
+	newOrder.date = today;
+	newOrder.idCreator = POST[0].userId;
+	await Order.save({data: newOrder});
+	
+	lastOrder = await Order.find('all', {
+		   order: 'id',
+	});
+	
+	id = lastOrder[0].id;
+	for(let i = 0; i < POST.length; i++){
+		await OrderHasProductModel.save({
+			data: {
+				count	 : POST[i].count,
+				productId: POST[i].productId,
+				orderId	 : POST[i].id,	
+			}
+		})
+	}
+	
+    res.send(POST);	
 }	

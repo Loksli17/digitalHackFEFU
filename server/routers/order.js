@@ -4,8 +4,9 @@ const
     router     = express.Router();
 
 
-router.get('/ajax', controller.indexAjax);
-router.get('/view', controller.actionView);
-router.get('/', 	controller.actionIndex);
+router.post('/neworder',controller.createOrder);
+router.get('/ajax', 	controller.indexAjax);
+router.get('/view', 	controller.actionView);
+router.get('/', 		controller.actionIndex);
 
 module.exports = router;
