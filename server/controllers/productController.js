@@ -14,8 +14,7 @@ exports.actionIndex = async (req, res) => {
 		'product.desc',
 		'product.img',
 		'product.name as name',
-		'shop.name as sname',
-		
+		'shop.name as sname',		
 		],
 		
 		join: [
