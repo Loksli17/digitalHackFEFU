@@ -1,8 +1,10 @@
 const
 	ProductModel = require('../models/ProductModel'),
+	OrderHasProductModel  = require('../models/OrderHasProductModel'),
     OrderModel 	 = require('../models/OrderModel');
   
 const
+	OrderHasProduct = new OrderHasProductModel(),
 	Product = new ProductModel(),
     Order 	= new OrderModel();
 
@@ -114,11 +116,19 @@ exports.indexAjax = async (req, res) => {
 exports.createOrder = async (req, res) =>{
 	const POST = req.body;
 	
+	let 
+		newOrder = {
+			isClose : 0,
+		},
+		lastOrder = [],
+		id = 0;	
+	
 	let today = new Date(),
 		dd = today.getDate(),
 		mm = today.getMonth()+1, 
 		yyyy = today.getFullYear();
-
+	
+	
 	if(dd<10) {
 		dd = '0'+dd
 	} 
@@ -128,6 +138,31 @@ exports.createOrder = async (req, res) =>{
 	} 
 
 	today = mm + '/' + dd + '/' + yyyy;
+	
+	if (POST.length < 0){
+		res.status(404);
+		res.send('404');
+		return;
+	}
+	
+	newOrder.date = today;
+	newOrder.idCreator = POST[0].userId;
+	await Order.save({data: newOrder});
+	
+	let lastOrder = await Order.find('all', {
+		   order: 'id',
+	});
+	
+	id = lastOrder[0].id;
+	for(let i = 0; i < POST.length; i++){
+		await OrderHasProductModel.save({
+			data: {
+				count	 : POST[i].count,
+				productId: POST[i].productId,
+				orderId	 : POST[i].id,	
+			}
+		})
+	}
 	
     res.send(POST);	
 }	
