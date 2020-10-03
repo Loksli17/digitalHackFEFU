@@ -3,10 +3,10 @@
         <h3>Заказы</h3>
 
         <div class="order-wrap">
-            <Order 
-                v-for="order in orders" 
-                :key="order.id" 
-                :order="order" 
+            <Order
+                v-for="order in orders"
+                :key="order.id"
+                :order="order"
             />
         </div>
 
@@ -51,6 +51,8 @@
 <style lang="scss" scoped>
     .order-wrap{
         display: grid;
-        grid-gap: 20px;
+        grid-template-columns: repeat(2, 45%);
+        justify-content: space-around;
+        grid-row-gap: 20px;
     }
 </style>
