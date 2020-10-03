@@ -17,19 +17,12 @@
                 <span>{{ product.sname }}</span>
             </div>
             <span id="price">{{ product.price }} ₽</span>
-<<<<<<< HEAD
-            <div class="third-bin">
-                <button @click="AddToCart">В корзину</button>
-            </div>
-        </div>
-=======
             <button @click="AddToCart" class="order-button">В корзину</button>
         </div>
         <div class="third-bin">
             <!-- <button @click="AddToCart">Добавить в корзину</button> -->
             <button @click="showInfo">hahhahaha</button>
         </div>
->>>>>>> 2276d957a0a91cc297eaa4333d886def4648c9cc
     </li>
 </template>
 
@@ -69,7 +62,7 @@
         padding: 20px;
         margin: 5px;
         box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.2);
-        font-family: 'Exo 2', sans-serif;
+        font-family: "Exo 2", sans-serif;
 
         .image {
             background: no-repeat center;
@@ -96,7 +89,7 @@
             }
 
             .third-bin {
-                background-color: #4476CC;
+                background-color: #4476cc;
 
                 button {
                     background: none;
