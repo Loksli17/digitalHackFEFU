@@ -12,14 +12,13 @@ UserModel.prototype.constructor = UserModel;
 
 
 UserModel.prototype.rules = {
-    integer : ['isActive'],
-    string  : ['lastName', 'firstName', 'patronymic', 'password', 'avatar'],
-    required: ['lastName', 'firstName', 'email', 'phone'],
-    max     : [{lastName: 255}, {firstName: 255}, {patronymic: 255}, {email: 255}, {password: 255}],
-    min     : [{lastName: 1}, {firstName: 2}, {email: 7}, {password: 8}],
+    string  : ['lastname', 'firstname', 'patronymic', 'password', 'avatar'],
+    required: ['lastname', 'firstname', 'email'],
+    max     : [{lastname: 255}, {firstname: 255}, {patronymic: 255}, {email: 255}, {password: 255}],
+    min     : [{lastname: 1}, {firstname: 2}, {email: 7}, {password: 8}],
     unique  : ['email'],
     email   : ['email'],
-    phone   : ['phone'],
+    // phone   : ['phone'],
 };
 
 
@@ -37,8 +36,8 @@ UserModel.prototype.rulesMessages = {
 
 UserModel.prototype.fields = {
     id        : 'ID',
-    lastName  : 'Фамилия',
-    firstName : 'Имя',
+    lastname  : 'Фамилия',
+    firstname : 'Имя',
     patronymic: 'Отчество',
     isActive  : 'Состояние бана',
     roles     : 'Роли пользователя',
