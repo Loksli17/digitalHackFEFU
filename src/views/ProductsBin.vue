@@ -31,7 +31,7 @@
         methods: {
             async fetchProducts() {
                 try {
-                    const res = await axios.get("http://localhost:3000/api/index");
+                    const res = await axios.get("http://localhost:3000/api/product");
                     this.products = res.data;
                 } catch (err) {
                     console.error(err);
@@ -49,10 +49,10 @@
 
 <style lang="scss" scoped>
     ul {
-        // display: grid;
+        display: grid;
         list-style: none;
         padding: 0;
-        // grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
 
         li {
             background: #ccc;

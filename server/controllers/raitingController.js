@@ -21,5 +21,10 @@ exports.actionIndex = async (req, res) => {
         users[i].place = i;
     }
 
-    res.send({users});
+    console.log(users);
+
+    res.send(users);
 }
+
+
+exports.action
