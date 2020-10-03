@@ -9,6 +9,10 @@ const
     Order 	= new OrderModel();
 
 
+const
+    DateModule = require('../lib/DateModule');
+
+
 exports.actionIndex = async (req, res) => {
 	let products = [];
 	let orders = await Order.find('all', {
@@ -33,7 +37,7 @@ exports.actionIndex = async (req, res) => {
 				'product.name',
 				'product.img',
 				'product.desc',
-				'order_has_product.count',
+				'order_has_product.count as count',
 			],			
 			join:[
 				['inner', 'order_has_product','order_has_product.productId = product.id'],
@@ -42,8 +46,11 @@ exports.actionIndex = async (req, res) => {
 			where : {eq: {'order.id': orders[i].id}},
 		});
 		
-		orders[i].products = products;
-	}
+        orders[i].products = products;
+        orders[i].date     = DateModule.formatViewDate(orders[i].date);
+    }
+    
+    console.log(orders[0]);
 	
 	res.send(orders);
 }

@@ -1,6 +1,7 @@
 <template>
     <div>
         <h3>Заказы</h3>
+
         <div class="order-wrap">
             <Order 
                 v-for="order in orders" 
@@ -8,6 +9,7 @@
                 :order="order" 
             />
         </div>
+
     </div>
 </template>
 
@@ -45,3 +47,10 @@
 
     }
 </script>
+
+<style lang="scss" scoped>
+    .order-wrap{
+        display: grid;
+        grid-gap: 20px;
+    }
+</style>
