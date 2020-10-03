@@ -42,7 +42,6 @@
                 });
 
                 const dataToSend = JSON.stringify(arr);
-                console.log(dataToSend);
 
                 try {
                     const res = await axios.post("http://localhost:3000/api/order/neworder", dataToSend);
