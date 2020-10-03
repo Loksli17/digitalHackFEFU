@@ -1,15 +1,18 @@
 <template>
     <li>
-        <!-- <div class="image" :style="'background-image: url(`assets\img\`' + products.img + ')'")> -->
-
-        <!-- </div> -->
-        <div class="first-row">
+        <div class="image"></div>
+        <div
+            class="first-row"
+            :style="
+                'background-image: url(./../assets/img/' + product.img + ')'
+            "
+        >
             <h3>{{ product.name }}</h3>
             <!-- <h3>{{product.}}</h3> -->
         </div>
         <div class="second-row">
-            <h4>{{product.desc}}</h4>
-            <h4>{{product.price}}₽</h4>
+            <h4>{{ product.desc }}</h4>
+            <h4>{{ product.price }}₽</h4>
         </div>
     </li>
 </template>
