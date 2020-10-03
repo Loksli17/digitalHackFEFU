@@ -29,6 +29,7 @@
         },
         created() {
             this.fetchProducts();
+            // this.products = this.$store.getters.getProducts;
         },
         methods: {
             showPopUp(id) {
