@@ -23,3 +23,6 @@ exports.actionIndex = async (req, res) => {
 
     res.send({users});
 }
+
+
+exports.action

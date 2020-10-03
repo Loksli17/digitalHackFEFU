@@ -15,6 +15,11 @@ const routes = [
       name     : 'Users',
       component: () => import('../views/Users.vue'),
   },
+   {
+      path: '/raiting',
+      name: 'Соц рейтинг',
+      component: () => import('../views/Raiting.vue')
+  },
   {
       path: '/products-bin',
       name: 'Корзина',
