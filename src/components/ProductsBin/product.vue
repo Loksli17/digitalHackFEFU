@@ -1,6 +1,16 @@
 <template>
     <li>
-        <h3>{{ product.firstname }} {{ product.lastname }}</h3>
+        <div class="image" :style="'background-image: url(`assets\img\`' + products.img + ')'")>
+
+        </div>
+        <div class="first-row">
+            <h3>{{ product.name }}</h3>
+            <h3>{{product.}}</h3>
+        </div>
+        <div class="second-row">
+            <h4>{{product.desc}}</h4>
+            <h4>{{product.price}}₽</h4>
+        </div>
     </li>
 </template>
 
@@ -10,3 +20,20 @@
         props: ["product"]
     }
 </script>
+
+<style lang="scss" scoped>
+    li {
+        display: flex;
+        flex-flow: column nowrap;
+
+        div {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+    }
+
+    .image {
+        min-width: 100%;
+    }
+</style>
