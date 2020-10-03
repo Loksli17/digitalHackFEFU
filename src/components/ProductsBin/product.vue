@@ -23,7 +23,6 @@
         </div>
 
         <div class="third-bin">
-            <!-- <button @click="AddToCart">Добавить в корзину</button> -->
             <button @click="showInfo">hahhahaha</button>
         </div>
     </li>
