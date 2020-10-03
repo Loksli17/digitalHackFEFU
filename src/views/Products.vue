@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>Корзина</h3>
+        <h3>Товары</h3>
         <ul>
             <Product
                 v-for="product in products"

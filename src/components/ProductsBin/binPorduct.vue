@@ -35,3 +35,20 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    li {
+        display: flex;
+        flex-flow: column nowrap;
+
+        div {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+    }
+
+    .image {
+        min-width: 100%;
+    }
+</style>
