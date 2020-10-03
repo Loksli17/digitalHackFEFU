@@ -9,7 +9,7 @@
                 :product="product"
             />
         </ul>
-        <div>
+        <div class="sum">
             <span>Сумма заказа: </span>
             <span>{{ sum }}₽</span>
         </div>
@@ -80,6 +80,7 @@
     ul {
         display: flex;
         flex-flow: column nowrap;
+        margin-top: 20px;
 
         li {
             display: flex;
@@ -89,5 +90,9 @@
 
     #banner {
         width: 100%;
+    }
+
+    .sum {
+        margin-top: 20px;
     }
 </style>

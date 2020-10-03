@@ -1,6 +1,7 @@
 <template>
     <div class="order">
         <div class="order-user">
+            <h4>Студент</h4>
             <div>
                 {{ order.lastname }}
                 {{ order.firstname }}
@@ -15,12 +16,25 @@
         </div>
 
         <div class="product-wrap">
+            <h4>Товары</h4>
             <div
                 class="product"
                 v-for="product in order.products"
                 v-bind:key="product.id"
             >
                 <div class="name">{{ product.name }}</div>
+
+                <div class="">{{ product.count }}</div>
+
+                <div
+                    :style="{
+                        'background-image':
+                            'url(' +
+                            require('../../assets/img/products/' +
+                                product.img) +
+                            ')',
+                    }"
+                ></div>
 
                 <div class="">{{ product.count }}</div>
 
@@ -40,7 +54,7 @@
             {{ order.date }}
         </div>
 
-        <a href="">Отликнуться на заказ</a>
+        <a @click="addToDelivery" href="">Отликнуться на заказ</a>
     </div>
 </template>
 
@@ -66,7 +80,7 @@
 
         a {
             display: block;
-            padding: 5px 10px;
+            padding: 8px 13px;
             text-decoration: none;
             background: #fff;
             width: max-content;

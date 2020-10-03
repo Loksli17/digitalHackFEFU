@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Рейтинг</h3>
-        <table class="raiting" border="1">
+        <table class="raiting">
             <UserRaiting 
                 v-for="user in users" 
                 :key="user.id" 
@@ -10,6 +10,14 @@
         </table>
     </div>
 </template>
+
+
+<style lang="scss" scoped>
+
+    table > tr{
+        background: #ccc;
+    }
+</style>
 
 <script>
     import UserRaiting from '../components/Raiting/UserRaiting.vue';

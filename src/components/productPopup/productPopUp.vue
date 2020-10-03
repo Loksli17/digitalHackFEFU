@@ -1,10 +1,11 @@
 <template>
     <div class="pop-up">
-        <div class="background" v-on:click="$emit('close-pop-up')"></div>
-        <div>
-            <h3>{{ productInfo.name }}</h3>
-            <p>{{ productInfo.desc }}</p>
-            <p>{{ productInfo.price }}</p>
+        <div class="background" v-on:click="$emit('close-pop-up')">
+            <div>
+                <h3>{{ productInfo.name }}</h3>
+                <p>{{ productInfo.desc }}</p>
+                <p>{{ productInfo.price }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -43,21 +44,22 @@
 <style lang="scss" scoped>
     .pop-up {
         position: fixed;
-        top: 30%;
-        left: 35%;
         background: rgba(50, 50, 50, 0.8);
         color: white;
-        width: 30vw;
-        height: 40vh;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         flex-flow: column nowrap;
         text-align: center;
         justify-content: center;
-        align-items: center;
 
         .background {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            text-align: center;
+            justify-content: center;
         }
     }
 </style>
