@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use('/api/index', require('./routers/index.js'));
+app.use('/api/index',   require('./routers/index.js'));
+app.use('/api/raiting', require('./routers/raiting.js'));
 
 app.listen(port, () => console.log(`server has been started on port ${3000}`));
