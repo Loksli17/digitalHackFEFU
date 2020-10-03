@@ -156,7 +156,7 @@ exports.createOrder = async (req, res) =>{
 	newOrder.idCreator = POST[0].userId;
 	await Order.save({data: newOrder});
 	
-	let lastOrder = await Order.find('all', {
+	lastOrder = await Order.find('all', {
 		   order: 'id',
 	});
 	
