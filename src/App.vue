@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ProductPopUp :id="id" v-if="popUpState" />
+        <ProductPopUp :id="id" v-if="popUpState" @close-pop-up="togglePopUp" />
         <Menu />
 
         <router-view @showPopUpProd="togglePopUp" />
@@ -23,7 +23,9 @@
         },
         methods: {
             togglePopUp(id) {
-                this.id = id;
+                if (typeof id === "number") {
+                    this.id = id;
+                }
                 this.popUpState = !this.popUpState;
             }
         }

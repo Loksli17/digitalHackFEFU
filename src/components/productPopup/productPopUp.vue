@@ -1,6 +1,6 @@
 <template>
     <div class="pop-up">
-        <div class="background"></div>
+        <div class="background" @click="closePopUp"></div>
         <div>
             <h3>{{ productInfo.name }}</h3>
             <p>{{ productInfo.desc }}</p>
@@ -23,6 +23,9 @@
             this.fetchProductInfo();
         },
         methods: {
+            closePopUp() {
+                this.$emit("close-pop-up");
+            },
             async fetchProductInfo() {
                 try {
                     const res = await axios.get(`http://localhost:3000/api/product/view?id=${this.id}`);
