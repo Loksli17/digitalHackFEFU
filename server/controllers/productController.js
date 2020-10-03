@@ -8,7 +8,7 @@ const
 exports.actionIndex = async (req, res) => {
     let products = await Product.find('all', {
 		select: [
-		'product.id as id'
+		'product.id as id',
 		'product.price',
 		'product.value',
 		'product.desc',
