@@ -91,27 +91,6 @@
                 }
             }
 
-<<<<<<< HEAD
-=======
-            .third-bin {
-                background-color: #4476cc;
-
-                button {
-                    background: none;
-                    border: 0px;
-                    color: white;
-                    font-size: 14px;
-                    text-align: center;
-                    width: 100%;
-                    line-height: 30px;
-                }
-
-                &:hover {
-                    background: red;
-                }
-            }
-
->>>>>>> 7d402810cf004f5083a11dbe1a9ea925f336ffa8
             #price {
                 line-height: 35px;
                 font-weight: bold;
