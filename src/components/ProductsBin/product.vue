@@ -3,7 +3,9 @@
         <div class="image"></div>
         <div
             class="first-row"
-            :style="'background-image: url(`assets/img/`' + product.img + ')'"
+            :style="
+                'background-image: url(./../assets/img/' + product.img + ')'
+            "
         >
             <h3>{{ product.name }}</h3>
             <!-- <h3>{{product.}}</h3> -->
