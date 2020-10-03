@@ -18,9 +18,12 @@
         </div>
         <div class="third-row">
             <h4>Количество:</h4>
-            <input type="number" v-model="product.amount" /><span
-                >/{{ product.value }}</span
-            >
+            <input
+                type="number"
+                v-model="product.amount"
+                @change="updateItemInCart"
+            />
+            <span id="price">{{ product.price * product.amount }} ₽</span>
         </div>
         <div class="fourth-bin">
             <button @click="removeFromCart">Убрать из корзины</button>
@@ -53,6 +56,9 @@
             removeFromCart() {
                 // this.$emit("add-to-cart", this.product);
                 this.$store.commit("removeFromCart", { product: this.product });
+            },
+            updateItemInCart() {
+                this.$store.commit("updateItemInCart", { product: this.product })
             }
         }
     }

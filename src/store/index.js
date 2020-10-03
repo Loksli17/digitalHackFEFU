@@ -33,6 +33,14 @@ export default new Vuex.Store({
         removeFromCart(state, payload) {
             state.userProductBin = state.userProductBin.filter(prod => prod !== payload.product);
             localStorage.setItem("bin", JSON.stringify(state.userProductBin));
+        },
+        updateItemInCart(state, payload) {
+            const product = payload.product;
+            if (state.userProductBin.find(prod => prod.id === product.id)) {
+                // state.userProductBin.push(product);
+                state.userProductBin[state.userProductBin.indexOf(product)] = product;
+                localStorage.setItem("bin", JSON.stringify(state.userProductBin));
+            }
         }
     }
 })

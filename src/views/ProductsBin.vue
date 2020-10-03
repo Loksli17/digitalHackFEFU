@@ -9,9 +9,13 @@
                 :product="product"
             />
         </ul>
+        <div>
+            <span>Сумма заказа: </span>
+            <span>{{ sum }}₽</span>
+        </div>
         <!-- <button @click="submitOrder">ПАДТВЕРДЕТЬ ЗОКАЗ</button> -->
         <form action="" method="POST" @submit.prevent="submitOrder">
-            <input type="submit" value="ПАДТВЕДРИТЬ ЗАКАЗ" />
+            <input type="submit" value="ПОДТВЕДРИТЬ ЗАКАЗ" />
         </form>
     </div>
 </template>
@@ -27,6 +31,10 @@
         computed: {
             userProducts() {
                 return this.$store.getters.getUserProductsBin;
+            },
+            sum() {
+                let arr = this.$store.getters.getUserProductsBin;
+                return arr.reduce((acc, current) => acc + current.price * current.amount, 0);
             }
         },
         methods: {
